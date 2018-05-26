@@ -6,24 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./resources/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
 </head>
 
 <body onkeypress="return myKeyPress(event)">
-    <div id="particles-js">
+
+        <div id="loses"></div>
+    <div class="game-name">
         <h1 id="h1"> HANGMAN </h1>
-        <button id="newGame">Start Game </button>
+        <h3 id="h1"> CULT CLASSIC MOVIES EDITION</h3>
+
+    </div>
+    <div class="gameContainer">
+        <button id="newGame">start game </button>
 
         <div id="underscores"></div>
         <div id="wins"></div>
-        <div id="loses"></div>
+       
         <div id="guesses">
             <h5>Letters you already guessed:</h5>
             <div id="wrongGuesses"></div>
         </div>
-        <!-- console logs pressed letters -->
-  
+
+    </div>
+    <!-- console logs pressed letters -->
+
     </div>
 
 

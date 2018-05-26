@@ -6,34 +6,39 @@ let titleToGuess = titlesArr[0];
 let titleToGuessArr = [];
 let underscores = document.getElementById("underscores");
 let underscoresArr = [];
-var guessesArr = [];
+let guessesArr = [];
 let guesses = document.getElementById("guesses");
 let wrongGuesses = document.getElementById("wrongGuesses");
-var wrongGuessesArr;
+let wrongGuessesArr;
+let wins = 0;
+let loses = 0;
 
 
 let currentUnderscores;
 
 
 //_____________________________________________GOES THROUGH SECRET WORD ARRAY____________
-
-
 // resets the blanks and displays new ones based on the next item in the titlesArr
-newGame.addEventListener('click', function () {
+function resetGame() {
   i = i + 1;
-  i = i % titlesArr.length
   titleToGuess = titlesArr[i].toLowerCase();
   titleLength = titleToGuess.length;
   console.log(titleToGuess);
   console.log(titleLength);
-  newGame.innerHTML = "New Game";
-  //resets the undersocres to 0
+  newGame.innerHTML = "new game";
   underscoresArr = [];
   //rsets guesses arr
   guessesArr = [];
   makeUnderscores();
-});
+  wrongGuesses.innerHTML = ("");
+}
 
+
+
+
+newGame.addEventListener('click', function () {
+  resetGame();
+});
 
 
 //_____________________________________________CONVERTS MOVIE NAMES INTO BLANKS________
@@ -49,7 +54,6 @@ function makeUnderscores() {
       underscoresArr.push("_");
     }
   }
-  console.log(underscoresArr.join(" "));
   underscores.innerHTML = underscoresArr.join(" ");
 }
 
@@ -57,36 +61,25 @@ function makeUnderscores() {
 //_____________________________________________STORING USER GUESSES____________
 //for now works even before a game is started
 var keynum;
-function addToGuessArr(){
+
+function addToGuessArr() {
   if (guessesArr.includes(String.fromCharCode(keynum))) {
     console.log("letter has been used already")
   } else {
     guessesArr.push(String.fromCharCode(keynum));
     //call the compare function on click
     compare();
-}
+  }
 }
 
 function myKeyPress(e) {
-
- if (window.event) { // IE                    
+  if (window.event) { // IE                    
     keynum = e.keyCode;
     addToGuessArr();
-    }
-
-
-
-    //duplicate code for netscape/firefox/opera
-     else if (e.which) { // Netscape/Firefox/Opera                   
-      keynum = e.which;
-      if (guessesArr.includes(String.fromCharCode(keynum))) {
-        console.log("letter has been used already")
-      } else {
-        guessesArr.push(String.fromCharCode(keynum));
-          //call the compare function on click
-         compare();
-      }
-
+  } //duplicate code for netscape/firefox/opera
+  else if (e.which) { // Netscape/Firefox/Opera                   
+    keynum = e.which;
+    addGuessToArr();
   }
 }
 //_____________COMPARE LATEST INPUT WITH ORIGINAL ARRAY CHANGE BLANKS
@@ -97,13 +90,24 @@ function compare() {
     if (titleToGuess.charAt(i) === guessesArr[guessesArr.length - 1]) {
       underscoresArr.splice(i, 1, guessesArr[guessesArr.length - 1]);
       underscores.innerHTML = underscoresArr.join(" ");
-      console.log("its a match!")
+      // console.log("its a match!")
     }
   }
 
   titleToGuessArr = titleToGuess.split("");
+
+  //compare guessArr snf titleToGuessArr and save the ones that don't match in wrongGuessArr
   wrongGuessesArr = guessesArr.filter((word) => !titleToGuessArr.includes(word));
-  wrongGuesses.innerHTML = ("wrong guesses: " + wrongGuessesArr.join(" , "));
+  //User only gets 8 wrong guesses
+  if (wrongGuessesArr.length <= 8) {
+    wrongGuesses.innerHTML = ("wrong guesses: " + wrongGuessesArr.join(" , "));
+  } else {
+    alert("you lost!");
+    loses = loses + 1;
+    document.getElementById("loses").innerHTML = ("Loses: " + loses);
+    newGame.style.display = "none";
+    resetGame();
+  }
 }
 
 
