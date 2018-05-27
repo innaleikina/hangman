@@ -1,4 +1,4 @@
-let titlesArr = ["Pulp-Fiction", "Fight-Club", "Donnie-Darko", "Scarface", "Blade-Runner", "the-Big-Lebowski", "Clerks", "The-Breakfast-Club", "The-Princess-Bride", "Napoleon-Dynomite", "Office-Space", "Heathers"];
+let titlesArr = ["Pulp-Fiction", "Fight-Club", "Donnie-Darko", "Scarface", "Blade-Runner", "the-Big-Lebowski", "Clerks", "The-Breakfast-Club", "The-Princess-Bride", "Napoleon-Dynomite", "Office-Space", "Heathers", "Clueless","Mean-Girls","The-Blues-Brothers"];
 let i = 0;
 let titleToGuess = titlesArr[0];
 let titleToGuessArr = [];
@@ -8,6 +8,7 @@ let underscores = document.getElementById("underscores");
 let guesses = document.getElementById("guesses");
 let wrongGuesses = document.getElementById("wrongGuesses");
 let newGame = document.getElementById('newGame');
+let body = document.getElementById('body');
 let wrongGuessesArr = [];
 let wins = 0;
 let loses = 0;
@@ -18,8 +19,7 @@ let counter = 8;
 //_____________________________RESETS AND ON EVERY RESET GOES THROUGH SECRET WORD ARRAY____________
 // resets the blanks and displays new ones based on the next item in the titlesArr
 function resetGame() {
-  i = (i + 1) % titlesArr.length;
-  titleToGuess = titlesArr[i].toLowerCase();
+  titleToGuess = titlesArr[Math.floor(Math.random()*titlesArr.length)].toLowerCase();
   console.log(titleToGuess);
   // console.log(titleLength);
   newGame.innerHTML = "new game";
@@ -30,6 +30,7 @@ function resetGame() {
   counter = 8;
   makeUnderscores();
   wrongGuesses.innerHTML = ("");
+  body.style.backgroundImage = "url(file:///Users/bradleyjones/Desktop/code/homeworks/javascript/hangman/resources/images/cinema-dark-display-8158.jpg)"
 }
 
 
@@ -108,13 +109,52 @@ function compare() {
 
   if (underscoresArr.join("") === titleToGuess) {
 
-    // underscores.innerHTML = titleToGuess.split("").join(" ");
     wins = wins + 1;
     document.getElementById("wins").innerHTML = ("Wins: " + wins);
+    //timeout so the last letter loads before win notification
+   setTimeout(function(){
     alert('You won!');
+    //background image changes based on which word the user guessed
+    if(underscoresArr.join("") === "fight-club" ){
+      body.style.backgroundImage = "url(./resources/images/fight-club.jpg)"
+    } else if (underscoresArr.join("") === "donnie-darko"){
+      body.style.backgroundImage = "url(./resources/images/donnie-darko.jpg)"
+    } else if (underscoresArr.join("") === "scarface"){
+      body.style.backgroundImage = "url(./resources/images/scarface.jpg)"
+    }else if (underscoresArr.join("") === "blade-runner"){
+      body.style.backgroundImage = "url(./resources/images/blade-runner.jpg)"
+    } else if (underscoresArr.join("") === "the-big-lebowski"){
+      body.style.backgroundImage = "url(./resources/images/the-big-lebowski.jpg)"
+    } else if (underscoresArr.join("") === "clerks"){
+      body.style.backgroundImage = "url(./resources/images/clerks.jpg)"
+    }else if (underscoresArr.join("") === "the-breakfast-club"){
+      body.style.backgroundImage = "url(./resources/images/the-breakfast-club.jpg)"
+    } else if (underscoresArr.join("") === "the-princess-bride"){
+      body.style.backgroundImage = "url(./resources/images/the-princess-bride.jpg)"
+    } else if (underscoresArr.join("") === "office-space"){
+      body.style.backgroundImage = "url(./resources/images/office-space.jpg)"
+    } else if (underscoresArr.join("") === "heathers"){
+      body.style.backgroundImage = "url(./resources/images/heathers.jpg)"
+    } else if (underscoresArr.join("") === "napoleon-dynomite"){
+      body.style.backgroundImage = "url(./resources/images/napoleon-dynomite.jpg)"
+    } else if (underscoresArr.join("") === "clueless"){
+      body.style.backgroundImage = "url(./resources/images/clueless.jpg)"
+    } else if (underscoresArr.join("") === "pulp-fiction"){
+      body.style.backgroundImage = "url(./resources/images/pulp-fiction.jpg)"
+    }else if (underscoresArr.join("") === "mean-girls"){
+      body.style.backgroundImage = "url(./resources/images/mean-girls.jpg)"
+    } else if (underscoresArr.join("") === "the-blues-brothers"){
+      body.style.backgroundImage = "url(./resources/images/the-blues-brothers.jpg)"
+    }
+   },1000);
+    
+
+   
+
+
     setTimeout(function(){
       resetGame()
-    }, 2000);
+    }, 5000);
   }
 
   // var counterHelper = wrongGuessesArr.length-1;
