@@ -41,7 +41,7 @@ h3 {
     background-color: rgba(255, 255, 255, 1);
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 400px;
+    width: 480px;
 }
 
 h5 {
@@ -54,7 +54,7 @@ h5 {
     align-content: center;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 20px;
-    width: 400px;
+    width: 480px;
     margin: 0 auto;
     margin-top: 40px;
 }
@@ -95,7 +95,7 @@ h5 {
     margin: 0 auto;
     color: black;
     margin-top: 30px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #loses {
@@ -108,4 +108,6 @@ h5 {
 #wins {
     font-size: 20px;
     color: green;
+    margin-left:25px;
+    margin-top:19px;
 }

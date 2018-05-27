@@ -1,55 +1,50 @@
-let titlesArr = ["", "Pulp Fiction", "Fight Club", "Donnie Darko", "Scarface", "Blade Runner", "the Big Lebowski", "The Rocky Horror Picture Show", "Clerks", "The Breakfast Club", "The Princess Bride", "Napoleon Dynomite", "Office Space", "Heathers"];
+let titlesArr = ["Pulp-Fiction", "Fight-Club", "Donnie-Darko", "Scarface", "Blade-Runner", "the-Big-Lebowski", "Clerks", "The-Breakfast-Club", "The-Princess-Bride", "Napoleon-Dynomite", "Office-Space", "Heathers"];
 let i = 0;
-let newGame = document.getElementById('newGame');
-
 let titleToGuess = titlesArr[0];
 let titleToGuessArr = [];
-let underscores = document.getElementById("underscores");
 let underscoresArr = [];
 let guessesArr = [];
+let underscores = document.getElementById("underscores");
 let guesses = document.getElementById("guesses");
 let wrongGuesses = document.getElementById("wrongGuesses");
-let wrongGuessesArr;
+let newGame = document.getElementById('newGame');
+let wrongGuessesArr = [];
 let wins = 0;
 let loses = 0;
+let counter = 8;
 
 
-let currentUnderscores;
 
-
-//_____________________________________________GOES THROUGH SECRET WORD ARRAY____________
+//_____________________________RESETS AND ON EVERY RESET GOES THROUGH SECRET WORD ARRAY____________
 // resets the blanks and displays new ones based on the next item in the titlesArr
 function resetGame() {
-  i = i + 1;
+  i = (i + 1) % titlesArr.length;
   titleToGuess = titlesArr[i].toLowerCase();
-  titleLength = titleToGuess.length;
   console.log(titleToGuess);
-  console.log(titleLength);
+  // console.log(titleLength);
   newGame.innerHTML = "new game";
+  //resets underscores arr
   underscoresArr = [];
-  //rsets guesses arr
+  //resets guesses arr
   guessesArr = [];
+  counter = 8;
   makeUnderscores();
   wrongGuesses.innerHTML = ("");
 }
 
 
-
-
+//________WHEN NEW GAME BUTTON IS PRESSED, GAME RESETS
 newGame.addEventListener('click', function () {
   resetGame();
 });
 
 
-//_____________________________________________CONVERTS MOVIE NAMES INTO BLANKS________
-
-
+//__________________________________CONVERTS MOVIE NAMES INTO BLANKS________
 function makeUnderscores() {
-  titleToGuessArr
   for (var i = 0; i < titleToGuess.length; i++) {
-    if (titleToGuess[i] === " ") {
+    if (titleToGuess[i] === "-") {
       //adds multiple spaces to an array, so when the array is joined there is still visible space between multiple words
-      underscoresArr.push(" \xa0\xa0\xa0\xa0\ ");
+      underscoresArr.push("-");
     } else {
       underscoresArr.push("_");
     }
@@ -58,7 +53,7 @@ function makeUnderscores() {
 }
 
 
-//_____________________________________________STORING USER GUESSES____________
+//____________________________________STORING USER GUESSES____________
 //for now works even before a game is started
 var keynum;
 
@@ -82,25 +77,27 @@ function myKeyPress(e) {
     addGuessToArr();
   }
 }
+
+//__________________________START OF COMPARE FUNCTION ________________
 //_____________COMPARE LATEST INPUT WITH ORIGINAL ARRAY CHANGE BLANKS
-//_____________TO RIGHT GUESSES AND SHOW WRONG GUESSES ON THE SCREEN____________
+//_____________FILL RIGHT GUESSES AND SHOW WRONG GUESSES ON THE SCREEN____________
 
 function compare() {
   for (i = 0; i < titleToGuess.length; i++) {
     if (titleToGuess.charAt(i) === guessesArr[guessesArr.length - 1]) {
       underscoresArr.splice(i, 1, guessesArr[guessesArr.length - 1]);
       underscores.innerHTML = underscoresArr.join(" ");
-      // console.log("its a match!")
     }
   }
 
   titleToGuessArr = titleToGuess.split("");
+  //compare guessArr and titleToGuessArr and save the ones that don't match in wrongGuessArr
+  wrongGuessesArr = guessesArr.filter((letter) => !titleToGuessArr.includes(letter));
 
-  //compare guessArr snf titleToGuessArr and save the ones that don't match in wrongGuessArr
-  wrongGuessesArr = guessesArr.filter((word) => !titleToGuessArr.includes(word));
   //User only gets 8 wrong guesses
   if (wrongGuessesArr.length <= 8) {
     wrongGuesses.innerHTML = ("wrong guesses: " + wrongGuessesArr.join(" , "));
+    document.getElementById("counter").innerHTML = ("Guesses Left: " + counter);
   } else {
     alert("you lost!");
     loses = loses + 1;
@@ -108,7 +105,27 @@ function compare() {
     newGame.style.display = "none";
     resetGame();
   }
+
+  if (underscoresArr.join("") === titleToGuess) {
+
+    // underscores.innerHTML = titleToGuess.split("").join(" ");
+    wins = wins + 1;
+    document.getElementById("wins").innerHTML = ("Wins: " + wins);
+    alert('You won!');
+    setTimeout(function(){
+      resetGame()
+    }, 2000);
+  }
+
+  // var counterHelper = wrongGuessesArr.length-1;
+  // console.log(counterHelper);
+  //    if(counterHelper < wrongGuessesArr.length){
+  //   counter = counter -1;
+  //   console.log(counter);
+  // }
+  // console.log(wrongGuessesArr);
 }
 
 
-//_________________________________________________________
+
+//__________________________END OF COMPARE FUNCTION ________________
