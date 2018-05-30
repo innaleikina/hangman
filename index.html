@@ -5,39 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Hangman</title>
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./resources/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+   
 </head>
 
-<body id="body" onkeypress="return myKeyPress(event)">
+<body onkeypress="return myKeyPress(event)">
 
-    <div id="wins"></div>
-    <div id="loses"></div>
-    <div class="game-name">
-        <h1 id="h1"> HANGMAN </h1>
-        <h3 id="h1"> CULT CLASSIC MOVIES EDITION</h3>
+    <div id="container" >
+        <div id="wins"></div>
+        <div id="loses"></div>
 
-    </div>
-    <div class="gameContainer">
-        <button id="newGame">start game </button>
+        <div class="gameContainer">
+            <button id="newGame">start game </button>
 
-        <div id="underscores"></div>
+            <div id="underscores"></div>
 
-        <div id="guesses">
-            <h5>Letters you already guessed:</h5>
-            <h6 id="counter"></h6>
-            <div id="wrongGuesses"></div>
+            <div id="guesses">
+                <h6 id="counter"></h6>
+                <div id="wrongGuesses"></div>
+            </div>
         </div>
+        <div class="game-name">
+            <h1 id="h1"> HANGMAN </h1>
+            <h3 id="h1"> CULT CLASSIC MOVIES EDITION</h3>
 
+        </div>
     </div>
     <!-- console logs pressed letters -->
 
     </div>
 
-
-
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="./resources/js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- <script src="./resources/js/particles.js"></script> -->

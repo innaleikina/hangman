@@ -2,23 +2,69 @@ html {
     font-family: "Helvetica", sans-serif;
 }
 
-body {
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#container {
+    -webkit-animation: fade-in 2s;
+    /* Safari 4+ */
+    -moz-animation: fade-in 2s;
+    /* Fx 5+ */
+    -o-animation: fade-in 2s;
+    /* Opera 12+ */
+    animation: fade-in 2s;
+    /* IE 10+, Fx 29+ */
     background-image: url("../images/cinema-dark-display-8158.jpg");
     background-size: cover;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     background-repeat: no-repeat;
-    background-position: bottom center;
-    display: block;
-    overflow: auto;
+    background-position: center;
+    /* width:100vw; */
+    height: 100vh;
+    margin: 0 auto;
+    /* border:1px red solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .game-name {
-    /* background-color:rgba(255,255,255,.5); */
     border-radius: 5px;
     padding: 5px 10px 10px 10px;
     margin: 0 auto;
-    margin-top: 20px;
-    /* width:300px; */
 }
 
 h1 {
@@ -27,7 +73,7 @@ h1 {
     font-size: 40px;
     letter-spacing: 5px;
     color: white;
-    background-color:black;
+    background-color: black;
     /* border:4px rgba(0,0,0,0.5) solid; */
 }
 
@@ -41,7 +87,7 @@ h3 {
     background-color: rgba(255, 255, 255, 1);
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 480px;
+    width: auto;
 }
 
 h5 {
@@ -56,7 +102,8 @@ h5 {
     border-radius: 20px;
     width: 480px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-bottom: 100px;
+    /* margin-top: 40px; */
 }
 
 #newGame {
@@ -101,14 +148,16 @@ h5 {
 #loses {
     font-size: 20px;
     color: red;
-    margin-left:25px;
-    margin-top:19px;
+    margin-left: 25px;
+    /* margin-top:19px; */
+    width: auto;
 }
 
 #wins {
     font-size: 20px;
     color: green;
-    margin-left:25px;
-    margin-top:19px;
-    background-color:rgba(0,0,0,0.8);
+    margin-left: 25px;
+    /* margin-top:19px; */
+    background-color: rgba(0, 0, 0, 0.8);
+    width: auto;
 }
