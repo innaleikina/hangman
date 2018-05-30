@@ -138,7 +138,7 @@ h5 {
     top: 2px;
 }
 
-#underscores {
+.underscoresStyle {
     margin: 0 auto;
     color: black;
     margin-top: 30px;
@@ -147,17 +147,50 @@ h5 {
 
 #loses {
     font-size: 20px;
-    color: red;
+    color:white;
     margin-left: 25px;
-    /* margin-top:19px; */
+    margin-top:-50px;
     width: auto;
 }
 
 #wins {
+    padding-top:19px;
     font-size: 20px;
-    color: green;
+    color: white;
     margin-left: 25px;
     /* margin-top:19px; */
-    background-color: rgba(0, 0, 0, 0.8);
-    width: auto;
+    /* background-color: rgba(0, 0, 0, 0.8);
+    width: auto; */
+}
+
+#win {
+    display: none;
+    position: fixed;
+    height: 30vh;
+    width: 50%;
+    margin-top: 10%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    /* border:1px red solid; */
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.winningTitle {
+    font-size: 35px;
+
+}
+
+.containerNone{
+    background-color:rgba(0, 0, 0, 0);
+}
+
+.containerBg{
+    background-color:white;
+    border-radius:0;
+    z-index:1;
+    margin-top:-30px;
+    padding:20px;
 }

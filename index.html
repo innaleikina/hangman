@@ -13,15 +13,19 @@
 </head>
 
 <body onkeypress="return myKeyPress(event)">
+        <div id="win">
+                <h1> YOU WON! </h1>
+            </div>
 
     <div id="container" >
+        
         <div id="wins"></div>
         <div id="loses"></div>
 
-        <div class="gameContainer">
+        <div class="gameContainer" id="gameContainer">
             <button id="newGame">start game </button>
 
-            <div id="underscores"></div>
+            <div id="underscores" class="underscoresStyle"></div>
 
             <div id="guesses">
                 <h6 id="counter"></h6>

@@ -1,5 +1,5 @@
 let titlesArr = ["Pulp-Fiction", "Fight-Club", "Donnie-Darko", "Scarface", "Blade-Runner", "the-Big-Lebowski", "Clerks", "The-Breakfast-Club", "The-Princess-Bride", "Napoleon-Dynomite", "Office-Space", "Heathers", "Clueless", "Mean-Girls", "The-Blues-Brothers"];
-let i = 0;
+// let i = 0;
 let titleToGuess = titlesArr[0];
 let titleToGuessArr = [];
 let underscoresArr = [];
@@ -32,7 +32,16 @@ function resetGame() {
   //resets wrong guesses
   wrongGuessesArr = [];
   wrongGuesses.innerHTML = ("");
-  container.style.backgroundImage = "url("+ image + ")";
+  document.getElementById("counter").innerHTML = ("Guesses Left: " + counter);
+  container.style.backgroundImage = "url(" + image + ")";
+  newGame.style.display = "block";
+  document.getElementById("win").style.display = "none";
+  document.getElementById("counter").style.display = "block";
+  wrongGuesses.style.display = "block";
+  underscores.classList.remove("winningTitle");
+  gameContainer.classList.remove("containerNone");
+  gameContainer.classList.remove("containerBg");
+  container.classList.remove("containerNone");
 }
 
 
@@ -52,6 +61,7 @@ function makeUnderscores() {
     }
   }
   underscores.innerHTML = underscoresArr.join(" ");
+
 }
 
 
@@ -93,12 +103,33 @@ function compare() {
   }
 
   titleToGuessArr = titleToGuess.split("");
-  
+
   //compare guessArr and titleToGuessArr and save the ones that don't match in wrongGuessArr
   wrongGuessesArr = guessesArr.filter(
     (letter) => !titleToGuessArr.includes(letter)
   );
 
+  for (var i = 0; i < wrongGuessesArr.length; i++) {
+    if (wrongGuessesArr.length == 0) {
+      counter = 8;
+    } else if (wrongGuessesArr.length == 1) {
+      counter = 7;
+    } else if (wrongGuessesArr.length == 2) {
+      counter = 6;
+    } else if (wrongGuessesArr.length == 3) {
+      counter = 5;
+    } else if (wrongGuessesArr.length == 4) {
+      counter = 4;
+    } else if (wrongGuessesArr.length == 5) {
+      counter = 3;
+    } else if (wrongGuessesArr.length == 6) {
+      counter = 2;
+    } else if (wrongGuessesArr.length == 7) {
+      counter = 1;
+    } else if (wrongGuessesArr.length == 8) {
+      counter = 0;
+    }
+  }
 
   //User only gets 8 wrong guesses
   if (wrongGuessesArr.length <= 8) {
@@ -112,6 +143,11 @@ function compare() {
     resetGame();
   }
 
+
+
+
+
+  //If user won, and rhe guess array matches the to guess array
   if (underscoresArr.join("") === titleToGuess) {
 
     wins = wins + 1;
@@ -119,18 +155,28 @@ function compare() {
     //timeout so the last letter loads before win notification
     setTimeout(function () {
       newGame.style.display = "none";
+      document.getElementById("win").style.display = "block";
+      document.getElementById("counter").style.display = "none";
+      wrongGuesses.style.display = "none";
+      underscores.classList.toggle("winningTitle");
+      let gameContainer = document.getElementById("gameContainer");
+      gameContainer.classList.toggle("containerNone");
+      gameContainer.classList.toggle("containerBg");
+      container.classList.toggle("containerNone");
+
+      // document.getElementById("counter").innerHTML = ;
       // alert('You won!');
       //background image changes based on which word the user guessed
 
-      $('#container')
-    .animate({opacity: 0}, 'slow', function() {
-        $(this)
-            .css({'background-image': image})
-            .animate({opacity: 1});
-    });
-      
+      //   $('#container')
+      // .animate({opacity: 0}, 'slow', function() {
+      //     $(this)
+      //         .css({'background-image': image})
+      //         .animate({opacity: 1});
+      // });
+
       if (underscoresArr.join("") === "fight-club") {
-       container.style.backgroundImage = "url(./resources/images/fight-club.jpg)"
+        container.style.backgroundImage = "url(./resources/images/fight-club.jpg)"
       } else if (underscoresArr.join("") === "donnie-darko") {
         container.style.backgroundImage = "url(./resources/images/donnie-darko.jpg)"
       } else if (underscoresArr.join("") === "scarface") {
