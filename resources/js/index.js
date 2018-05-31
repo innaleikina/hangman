@@ -9,6 +9,7 @@ let guesses = document.getElementById("guesses");
 let wrongGuesses = document.getElementById("wrongGuesses");
 let newGame = document.getElementById('newGame');
 let container = document.getElementById('container');
+let hint = document.getElementById('hint');
 let wrongGuessesArr = [];
 let wins = 0;
 let loses = 0;
@@ -36,13 +37,20 @@ function resetGame() {
   container.style.backgroundImage = "url(" + image + ")";
   newGame.style.display = "block";
   document.getElementById("win").style.display = "none";
-  document.getElementById("counter").style.display = "block";
-  wrongGuesses.style.display = "block";
+  document.getElementById("counter").style.display = "blo";
+  wrongGuesses.style.display = "none";
   underscores.classList.remove("winningTitle");
   gameContainer.classList.remove("containerNone");
   gameContainer.classList.remove("containerBg");
   container.classList.remove("containerNone");
+  document.getElementById("counter").style.display = "block";
+  hint.innerHTML = ("");
+  hint.style.backgroundColor = "rgba(0,0,0,0)";
+  wrongGuesses.style.display = "block";
+  // underscores.classList.add("winningTitle");
+  underscores.style.display = "block";
 }
+
 
 
 //________WHEN NEW GAME BUTTON IS PRESSED, GAME RESETS
@@ -63,6 +71,7 @@ function makeUnderscores() {
   underscores.innerHTML = underscoresArr.join(" ");
 
 }
+
 
 
 //____________________________________STORING USER GUESSES____________
@@ -99,8 +108,45 @@ function compare() {
     if (titleToGuess.charAt(i) === guessesArr[guessesArr.length - 1]) {
       underscoresArr.splice(i, 1, guessesArr[guessesArr.length - 1]);
       underscores.innerHTML = underscoresArr.join(" ");
+
     }
   }
+
+  hint.style.backgroundColor = "rgba(0,0,0,0.4)";
+
+  if (titleToGuess == "fight-club") {
+    console.log("this is fight club");
+    hint.innerHTML = ('quote :  "The first rule of project mayhem is you do not ask questions.    "');
+  } else if (titleToGuess === "donnie-darko") {
+    hint.innerHTML = ('quote :  " 28 days... 6 hours... 42 minutes... 12 seconds. That... is when the world... will end."');
+  } else if (titleToGuess === "scarface") {
+    hint.innerHTML = ('quote :  " You wanna fuck with me? Okay. You wanna play rough? Okay. Say hello to my little friend!" ');
+  } else if (titleToGuess === "the-big-lebowski") {
+    hint.innerHTML = ('quote :  “I\’m the Dude, so that’s what you call me. That or, uh His Dudeness, or uh Duder, or El Duderino, if you’re not into the whole brevity thing."');
+  } else if (titleToGuess === "the-breakfast-club") {
+    hint.innerHTML = ('quote :  "Don\'t mess with the bull, young man. You\'ll get the horns."');
+  } else if (titleToGuess === "the-princess-bride") {
+    hint.innerHTML = ('quote :  "I just work for Vizzini to pay the bills. There’s not a lot of money in revenge."');
+  } else if (titleToGuess === "office-space") {
+    hint.innerHTML = ('quote :  "The ratio of people to cake is too big."');
+  } else if (titleToGuess === "heathers") {
+    hint.innerHTML = ('quote :  "Dear Diary: My teen angst bullshit now has a body count."');
+  } else if (titleToGuess === "napoleon-dynomite") {
+    hint.innerHTML = ('quote :  "Tina you fat lard"');
+  } else if (titleToGuess === "clueless") {
+    hint.innerHTML = ('quote :  "my plastic surgeon doesn\'t want me doing any activity where balls fly at my nose."');
+  } else if (titleToGuess === "pulp-fiction") {
+    hint.innerHTML = ('quote :  " Look, I\'m not stupid. It\'s the Big Man\s wife. I\'m gonna sit across from her, chew my food with my mouth closed, laugh at her fucking jokes, and that\'s it."');
+  } else if (titleToGuess === "mean-girls") {
+    hint.innerHTML = ('quote :  "Get in loser. We’re going shopping."');
+  } else if (titleToGuess === "the-blues-brothers") {
+    hint.innerHTML = ('quote :  "We had a band powerful enough to turn goat piss into gasoline."');
+  }else if (titleToGuess === "clerks") {
+    hint.innerHTML = ('quote :  "Noinch, Noinch, Noinch, Schmokin Weed, Schmokin\' Weed, Doin\' Coke, Drinkin\' Beers..."');
+  }else if (titleToGuess === "blade-runner") {
+    hint.innerHTML = ('quote :  "Quite an experience to live in fear, isn\'t it? That\'s what it is to be a slave."');
+  }
+
 
   titleToGuessArr = titleToGuess.split("");
 
@@ -147,6 +193,7 @@ function compare() {
 
 
 
+
   //If user won, and rhe guess array matches the to guess array
   if (underscoresArr.join("") === titleToGuess) {
 
@@ -158,11 +205,16 @@ function compare() {
       document.getElementById("win").style.display = "block";
       document.getElementById("counter").style.display = "none";
       wrongGuesses.style.display = "none";
-      underscores.classList.toggle("winningTitle");
       let gameContainer = document.getElementById("gameContainer");
-      gameContainer.classList.toggle("containerNone");
-      gameContainer.classList.toggle("containerBg");
-      container.classList.toggle("containerNone");
+      gameContainer.classList.add("containerNone");
+      container.classList.add("containerNone");
+      underscores.style.display = "none";
+      document.getElementById("underscores2").innerHTML = underscoresArr.join(" ");
+      document.getElementById("underscores2").style.display = "block";
+      document.getElementById("win").style.marginTop = "380px";
+      hint.innerHTML = ("");
+
+      hint.style.backgroundColor = "rgba(0,0,0,0)";
 
       // document.getElementById("counter").innerHTML = ;
       // alert('You won!');

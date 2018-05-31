@@ -9,20 +9,23 @@
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./resources/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
-   
+
 </head>
 
 <body onkeypress="return myKeyPress(event)">
-        <div id="win">
-                <h1> YOU WON! </h1>
-            </div>
+    <div id="win">
+        <h1> YOU WON! </h1>
+        <div id="underscores2" class="underscoresStyle"></div>
 
-    <div id="container" >
-        
-        <div id="wins"></div>
-        <div id="loses"></div>
+    </div>
 
-        <div class="gameContainer" id="gameContainer">
+    <div id="container">
+        <div class="loss-win-container">
+            <div id="wins"></div>
+            <div id="loses"></div>
+        </div>
+
+        <div id="gameContainer" class="gameContainerStyle">
             <button id="newGame">start game </button>
 
             <div id="underscores" class="underscoresStyle"></div>
@@ -31,6 +34,8 @@
                 <h6 id="counter"></h6>
                 <div id="wrongGuesses"></div>
             </div>
+
+            <div id="hint"></div>
         </div>
         <div class="game-name">
             <h1 id="h1"> HANGMAN </h1>
@@ -42,7 +47,7 @@
 
     </div>
 
-  
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="./resources/js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

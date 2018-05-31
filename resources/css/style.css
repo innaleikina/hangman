@@ -94,7 +94,7 @@ h5 {
     text-align: center;
 }
 
-.gameContainer {
+.gameContainerStyle {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -102,7 +102,7 @@ h5 {
     border-radius: 20px;
     width: 480px;
     margin: 0 auto;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
     /* margin-top: 40px; */
 }
 
@@ -147,17 +147,17 @@ h5 {
 
 #loses {
     font-size: 20px;
-    color:white;
+    color: white;
     margin-left: 25px;
-    margin-top:-50px;
     width: auto;
 }
 
 #wins {
-    padding-top:19px;
+    padding-top: 19px;
     font-size: 20px;
     color: white;
     margin-left: 25px;
+    margin-bottom:10px;
     /* margin-top:19px; */
     /* background-color: rgba(0, 0, 0, 0.8);
     width: auto; */
@@ -168,29 +168,37 @@ h5 {
     position: fixed;
     height: 30vh;
     width: 50%;
-    margin-top: 10%;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
     /* border:1px red solid; */
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.2);
+    /* background-color: rgba(0, 0, 0, 0.2); */
 }
 
-.winningTitle {
+.containerNone {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#underscores2 {
     font-size: 35px;
-
+    background-color: white;
 }
 
-.containerNone{
-    background-color:rgba(0, 0, 0, 0);
+.loss-win-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-.containerBg{
-    background-color:white;
-    border-radius:0;
-    z-index:1;
-    margin-top:-30px;
-    padding:20px;
+#hint{
+    margin-top:30px;
+    font-size:13px;
+    letter-spacing:2px;
+    color:white;
+    /* background-color:rgba(0, 0, 0, 0.4); */
+    padding:10px;
+    line-height:1.4rem;
 }
