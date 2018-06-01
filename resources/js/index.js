@@ -1,28 +1,105 @@
-let titlesArr = ["Pulp-Fiction", "Fight-Club", "Donnie-Darko", "Scarface", "Blade-Runner", "the-Big-Lebowski", "Clerks", "The-Breakfast-Club", "The-Princess-Bride", "Napoleon-Dynomite", "Office-Space", "Heathers", "Clueless", "Mean-Girls", "The-Blues-Brothers"];
-// let i = 0;
-let titleToGuess = titlesArr[0];
+let titlesArr = [{
+    title: "Pulp-Fiction",
+    image: "url(./resources/images/pulp-fiction.jpg)",
+    quote: 'quote :  "Look, I\'m not stupid. It\'s the Big Man\s wife. I\'m gonna sit across from her, chew my food with my mouth closed, laugh at her fucking jokes, and that\'s it."'
+  },
+  {
+    title: "Fight-Club",
+    image: "url(./resources/images/fight-club.jpg)",
+    quote: 'quote :  "The first rule of project mayhem is you do not ask questions."'
+  },
+  {
+    title: "Donnie-Darko",
+    image: "url(./resources/images/donnie-darko.jpg)",
+    quote: 'quote :  "28 days... 6 hours... 42 minutes... 12 seconds. That... is when the world... will end."'
+  },
+  {
+    title: "Scarface",
+    image: "url(./resources/images/scarface.jpg)",
+    quote: 'quote :  "You wanna fuck with me? Okay. You wanna play rough? Okay. Say hello to my little friend!" '
+  },
+  {
+    title: "Blade-Runner",
+    image: "url(./resources/images/blade-runner.jpg)",
+    quote: 'quote :  "Quite an experience to live in fear, isn\'t it? That\'s what it is to be a slave."'
+  },
+  {
+    title: "the-Big-Lebowski",
+    image: "url(./resources/images/the-big-lebowski.jpg)",
+    quote: 'quote :  “I\’m the Dude, so that’s what you call me. That or, uh His Dudeness, or uh Duder, or El Duderino, if you’re not into the whole brevity thing."'
+  },
+  {
+    title: "Clerks",
+    image: "url(./resources/images/clerks.jpg)",
+    quote: 'quote :  "Noinch, Noinch, Noinch, Schmokin Weed, Schmokin\' Weed, Doin\' Coke, Drinkin\' Beers..."',
+  },
+  {
+    title: "The-Breakfast-Club",
+    image: "url(./resources/images/the-breakfast-club.jpg)",
+    quote: 'quote :  "Don\'t mess with the bull, young man. You\'ll get the horns."'
+  }, {
+    title: "The-Princess-Bride",
+    image: "url(./resources/images/the-princess-bride.jpg)",
+    quote: 'quote :  "I just work for Vizzini to pay the bills. There’s not a lot of money in revenge."'
+  },
+  {
+    title: "Napoleon-Dynomite",
+    image: "url(./resources/images/napoleon-dynomite.jpg)",
+    quote: 'quote :  "Tina you fat lard"'
+  },
+  {
+    title: "Office-Space",
+    image: "url(./resources/images/office-space.jpg)",
+    quote: 'quote :  "The ratio of people to cake is too big."'
+  },
+  {
+    title: "Heathers",
+    image: "url(./resources/images/heathers.jpg)",
+    quote: 'quote :  "Dear Diary: My teen angst bullshit now has a body count."'
+  },
+  {
+    title: "Clueless",
+    image: "url(./resources/images/clueless.jpg)",
+    quote: 'quote :  "my plastic surgeon doesn\'t want me doing any activity where balls fly at my nose."'
+  },
+  {
+    title: "Mean-Girls",
+    image: "url(./resources/images/mean-girls.jpg)",
+    quote: 'quote :  "Get in loser. We’re going shopping."'
+  },
+  {
+    title: "The-Blues-Brothers",
+    image: "url(./resources/images/the-blues-brothers.jpg)",
+    quote: 'quote :  "We had a band powerful enough to turn goat piss into gasoline."'
+  }
+];
+
+let titleToGuess = titlesArr[0].title;
 let titleToGuessArr = [];
 let underscoresArr = [];
 let guessesArr = [];
+let wrongGuessesArr = [];
+let wins = 0;
+let loses = 0;
+let counter = 8;
+let index;
+//css elements
 let underscores = document.getElementById("underscores");
 let guesses = document.getElementById("guesses");
 let wrongGuesses = document.getElementById("wrongGuesses");
 let newGame = document.getElementById('newGame');
 let container = document.getElementById('container');
 let hint = document.getElementById('hint');
-let wrongGuessesArr = [];
-let wins = 0;
-let loses = 0;
-let counter = 8;
 let image = "./resources/images/cinema-dark-display-8158.jpg";
 
 
 //_____________________________RESETS AND ON EVERY RESET GOES THROUGH SECRET WORD ARRAY____________
 // resets the blanks and displays new ones based on the next item in the titlesArr
 function resetGame() {
-  titleToGuess = titlesArr[Math.floor(Math.random() * titlesArr.length)].toLowerCase();
+  //saves the random index o be used later when accessign properties
+  index = Math.floor(Math.random() * titlesArr.length);
+  titleToGuess = titlesArr[index].title.toLowerCase();
   console.log(titleToGuess);
-  // console.log(titleLength);
   newGame.innerHTML = "new game";
   //resets underscores arr
   underscoresArr = [];
@@ -33,22 +110,28 @@ function resetGame() {
   //resets wrong guesses
   wrongGuessesArr = [];
   wrongGuesses.innerHTML = ("");
+  wrongGuesses.style.display = "block";
+  //reset counter
   document.getElementById("counter").innerHTML = ("Guesses Left: " + counter);
+  document.getElementById("counter").style.display = "block";
+  //reset background image
   container.style.backgroundImage = "url(" + image + ")";
+  //bring button back
   newGame.style.display = "block";
+  //win message goes away
   document.getElementById("win").style.display = "none";
-  document.getElementById("counter").style.display = "blo";
-  wrongGuesses.style.display = "none";
+  //underscores reset
+  underscores.style.display = "block";
   underscores.classList.remove("winningTitle");
+  //styligng reset
   gameContainer.classList.remove("containerNone");
   gameContainer.classList.remove("containerBg");
   container.classList.remove("containerNone");
-  document.getElementById("counter").style.display = "block";
+  //hint resets
   hint.innerHTML = ("");
   hint.style.backgroundColor = "rgba(0,0,0,0)";
-  wrongGuesses.style.display = "block";
+
   // underscores.classList.add("winningTitle");
-  underscores.style.display = "block";
 }
 
 
@@ -112,40 +195,9 @@ function compare() {
     }
   }
 
+  //style and conent of the quote/hint
   hint.style.backgroundColor = "rgba(0,0,0,0.4)";
-
-  if (titleToGuess == "fight-club") {
-    hint.innerHTML = ('quote :  "The first rule of project mayhem is you do not ask questions.    "');
-  } else if (titleToGuess === "donnie-darko") {
-    hint.innerHTML = ('quote :  "28 days... 6 hours... 42 minutes... 12 seconds. That... is when the world... will end."');
-  } else if (titleToGuess === "scarface") {
-    hint.innerHTML = ('quote :  "You wanna fuck with me? Okay. You wanna play rough? Okay. Say hello to my little friend!" ');
-  } else if (titleToGuess === "the-big-lebowski") {
-    hint.innerHTML = ('quote :  “I\’m the Dude, so that’s what you call me. That or, uh His Dudeness, or uh Duder, or El Duderino, if you’re not into the whole brevity thing."');
-  } else if (titleToGuess === "the-breakfast-club") {
-    hint.innerHTML = ('quote :  "Don\'t mess with the bull, young man. You\'ll get the horns."');
-  } else if (titleToGuess === "the-princess-bride") {
-    hint.innerHTML = ('quote :  "I just work for Vizzini to pay the bills. There’s not a lot of money in revenge."');
-  } else if (titleToGuess === "office-space") {
-    hint.innerHTML = ('quote :  "The ratio of people to cake is too big."');
-  } else if (titleToGuess === "heathers") {
-    hint.innerHTML = ('quote :  "Dear Diary: My teen angst bullshit now has a body count."');
-  } else if (titleToGuess === "napoleon-dynomite") {
-    hint.innerHTML = ('quote :  "Tina you fat lard"');
-  } else if (titleToGuess === "clueless") {
-    hint.innerHTML = ('quote :  "my plastic surgeon doesn\'t want me doing any activity where balls fly at my nose."');
-  } else if (titleToGuess === "pulp-fiction") {
-    hint.innerHTML = ('quote :  "Look, I\'m not stupid. It\'s the Big Man\s wife. I\'m gonna sit across from her, chew my food with my mouth closed, laugh at her fucking jokes, and that\'s it."');
-  } else if (titleToGuess === "mean-girls") {
-    hint.innerHTML = ('quote :  "Get in loser. We’re going shopping."');
-  } else if (titleToGuess === "the-blues-brothers") {
-    hint.innerHTML = ('quote :  "We had a band powerful enough to turn goat piss into gasoline."');
-  } else if (titleToGuess === "clerks") {
-    hint.innerHTML = ('quote :  "Noinch, Noinch, Noinch, Schmokin Weed, Schmokin\' Weed, Doin\' Coke, Drinkin\' Beers..."');
-  } else if (titleToGuess === "blade-runner") {
-    hint.innerHTML = ('quote :  "Quite an experience to live in fear, isn\'t it? That\'s what it is to be a slave."');
-  }
-
+  hint.innerHTML = titlesArr[index].quote;
 
   titleToGuessArr = titleToGuess.split("");
 
@@ -214,7 +266,7 @@ function compare() {
       hint.innerHTML = ("");
 
       hint.style.backgroundColor = "rgba(0,0,0,0)";
-
+      container.style.backgroundImage = titlesArr[index].image;
       // document.getElementById("counter").innerHTML = ;
       // alert('You won!');
       //background image changes based on which word the user guessed
@@ -225,38 +277,6 @@ function compare() {
       //         .css({'background-image': image})
       //         .animate({opacity: 1});
       // });
-
-      if (underscoresArr.join("") === "fight-club") {
-        container.style.backgroundImage = "url(./resources/images/fight-club.jpg)"
-      } else if (underscoresArr.join("") === "donnie-darko") {
-        container.style.backgroundImage = "url(./resources/images/donnie-darko.jpg)"
-      } else if (underscoresArr.join("") === "scarface") {
-        container.style.backgroundImage = "url(./resources/images/scarface.jpg)"
-      } else if (underscoresArr.join("") === "blade-runner") {
-        container.style.backgroundImage = "url(./resources/images/blade-runner.jpg)"
-      } else if (underscoresArr.join("") === "the-big-lebowski") {
-        container.style.backgroundImage = "url(./resources/images/the-big-lebowski.jpg)"
-      } else if (underscoresArr.join("") === "clerks") {
-        container.style.backgroundImage = "url(./resources/images/clerks.jpg)"
-      } else if (underscoresArr.join("") === "the-breakfast-club") {
-        container.style.backgroundImage = "url(./resources/images/the-breakfast-club.jpg)"
-      } else if (underscoresArr.join("") === "the-princess-bride") {
-        container.style.backgroundImage = "url(./resources/images/the-princess-bride.jpg)"
-      } else if (underscoresArr.join("") === "office-space") {
-        container.style.backgroundImage = "url(./resources/images/office-space.jpg)"
-      } else if (underscoresArr.join("") === "heathers") {
-        container.style.backgroundImage = "url(./resources/images/heathers.jpg)"
-      } else if (underscoresArr.join("") === "napoleon-dynomite") {
-        container.style.backgroundImage = "url(./resources/images/napoleon-dynomite.jpg)"
-      } else if (underscoresArr.join("") === "clueless") {
-        container.style.backgroundImage = "url(./resources/images/clueless.jpg)"
-      } else if (underscoresArr.join("") === "pulp-fiction") {
-        container.style.backgroundImage = "url(./resources/images/pulp-fiction.jpg)"
-      } else if (underscoresArr.join("") === "mean-girls") {
-        container.style.backgroundImage = "url(./resources/images/mean-girls.jpg)"
-      } else if (underscoresArr.join("") === "the-blues-brothers") {
-        container.style.backgroundImage = "url(./resources/images/the-blues-brothers.jpg)"
-      }
     }, 500);
 
     setTimeout(function () {
