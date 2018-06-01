@@ -115,12 +115,11 @@ function compare() {
   hint.style.backgroundColor = "rgba(0,0,0,0.4)";
 
   if (titleToGuess == "fight-club") {
-    console.log("this is fight club");
     hint.innerHTML = ('quote :  "The first rule of project mayhem is you do not ask questions.    "');
   } else if (titleToGuess === "donnie-darko") {
-    hint.innerHTML = ('quote :  " 28 days... 6 hours... 42 minutes... 12 seconds. That... is when the world... will end."');
+    hint.innerHTML = ('quote :  "28 days... 6 hours... 42 minutes... 12 seconds. That... is when the world... will end."');
   } else if (titleToGuess === "scarface") {
-    hint.innerHTML = ('quote :  " You wanna fuck with me? Okay. You wanna play rough? Okay. Say hello to my little friend!" ');
+    hint.innerHTML = ('quote :  "You wanna fuck with me? Okay. You wanna play rough? Okay. Say hello to my little friend!" ');
   } else if (titleToGuess === "the-big-lebowski") {
     hint.innerHTML = ('quote :  “I\’m the Dude, so that’s what you call me. That or, uh His Dudeness, or uh Duder, or El Duderino, if you’re not into the whole brevity thing."');
   } else if (titleToGuess === "the-breakfast-club") {
@@ -136,14 +135,14 @@ function compare() {
   } else if (titleToGuess === "clueless") {
     hint.innerHTML = ('quote :  "my plastic surgeon doesn\'t want me doing any activity where balls fly at my nose."');
   } else if (titleToGuess === "pulp-fiction") {
-    hint.innerHTML = ('quote :  " Look, I\'m not stupid. It\'s the Big Man\s wife. I\'m gonna sit across from her, chew my food with my mouth closed, laugh at her fucking jokes, and that\'s it."');
+    hint.innerHTML = ('quote :  "Look, I\'m not stupid. It\'s the Big Man\s wife. I\'m gonna sit across from her, chew my food with my mouth closed, laugh at her fucking jokes, and that\'s it."');
   } else if (titleToGuess === "mean-girls") {
     hint.innerHTML = ('quote :  "Get in loser. We’re going shopping."');
   } else if (titleToGuess === "the-blues-brothers") {
     hint.innerHTML = ('quote :  "We had a band powerful enough to turn goat piss into gasoline."');
-  }else if (titleToGuess === "clerks") {
+  } else if (titleToGuess === "clerks") {
     hint.innerHTML = ('quote :  "Noinch, Noinch, Noinch, Schmokin Weed, Schmokin\' Weed, Doin\' Coke, Drinkin\' Beers..."');
-  }else if (titleToGuess === "blade-runner") {
+  } else if (titleToGuess === "blade-runner") {
     hint.innerHTML = ('quote :  "Quite an experience to live in fear, isn\'t it? That\'s what it is to be a slave."');
   }
 
@@ -264,14 +263,6 @@ function compare() {
       resetGame()
     }, 3000);
   }
-
-  // var counterHelper = wrongGuessesArr.length-1;
-  // console.log(counterHelper);
-  //    if(counterHelper < wrongGuessesArr.length){
-  //   counter = counter -1;
-  //   console.log(counter);
-  // }
-  // console.log(wrongGuessesArr);
 }
 
 
