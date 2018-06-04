@@ -93,10 +93,10 @@ let hint = document.getElementById('hint');
 let image = "./resources/images/cinema-dark-display-8158.jpg";
 
 
-//_____________________________RESETS AND ON EVERY RESET GOES THROUGH SECRET WORD ARRAY____________
+//_____________________________RESETS AND ON EVERY RESET functi GOES THROUGH SECRET WORD ARRAY____________
 // resets the blanks and displays new ones based on the next item in the titlesArr
 function resetGame() {
-  //saves the random index o be used later when accessign properties
+  //saves the random index o be used later when accessing properties
   index = Math.floor(Math.random() * titlesArr.length);
   titleToGuess = titlesArr[index].title.toLowerCase();
   console.log(titleToGuess);
@@ -130,8 +130,8 @@ function resetGame() {
   //hint resets
   hint.innerHTML = ("");
   hint.style.backgroundColor = "rgba(0,0,0,0)";
-
-  // underscores.classList.add("winningTitle");
+  //lost reset
+  document.getElementById("loose").style.display = "none";
 }
 
 
@@ -152,7 +152,6 @@ function makeUnderscores() {
     }
   }
   underscores.innerHTML = underscoresArr.join(" ");
-
 }
 
 
@@ -198,15 +197,14 @@ function compare() {
   //style and conent of the quote/hint
   hint.style.backgroundColor = "rgba(0,0,0,0.4)";
   hint.innerHTML = titlesArr[index].quote;
-
-  titleToGuessArr = titleToGuess.split("");
-
+  
   //compare guessArr and titleToGuessArr and save the ones that don't match in wrongGuessArr
+  titleToGuessArr = titleToGuess.split("");
   wrongGuessesArr = guessesArr.filter(
     (letter) => !titleToGuessArr.includes(letter)
   );
 
-  for (var i = 0; i < wrongGuessesArr.length; i++) {
+  
     if (wrongGuessesArr.length == 0) {
       counter = 8;
     } else if (wrongGuessesArr.length == 1) {
@@ -226,26 +224,24 @@ function compare() {
     } else if (wrongGuessesArr.length == 8) {
       counter = 0;
     }
-  }
+
 
   //User only gets 8 wrong guesses
   if (wrongGuessesArr.length <= 8) {
     wrongGuesses.innerHTML = ("wrong guesses: " + wrongGuessesArr.join(" , "));
     document.getElementById("counter").innerHTML = ("Guesses Left: " + counter);
   } else {
-    alert("you lost!");
+    // alert("you lost!");
+    document.getElementById("loose").style.display = "block";
     loses = loses + 1;
     document.getElementById("loses").innerHTML = ("Loses: " + loses);
-    newGame.style.display = "none";
-    resetGame();
+    setTimeout(function () {
+      resetGame()
+    }, 2000);
   }
 
 
-
-
-
-
-  //If user won, and rhe guess array matches the to guess array
+//If user won, and the guess array matches the to guess array
   if (underscoresArr.join("") === titleToGuess) {
 
     wins = wins + 1;
@@ -267,16 +263,6 @@ function compare() {
 
       hint.style.backgroundColor = "rgba(0,0,0,0)";
       container.style.backgroundImage = titlesArr[index].image;
-      // document.getElementById("counter").innerHTML = ;
-      // alert('You won!');
-      //background image changes based on which word the user guessed
-
-      //   $('#container')
-      // .animate({opacity: 0}, 'slow', function() {
-      //     $(this)
-      //         .css({'background-image': image})
-      //         .animate({opacity: 1});
-      // });
     }, 500);
 
     setTimeout(function () {

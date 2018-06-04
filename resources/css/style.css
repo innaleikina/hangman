@@ -202,3 +202,20 @@ h5 {
     padding:10px;
     line-height:1.4rem;
 }
+
+#loose { 
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    /* border:1px red solid; */
+    text-align: center;
+    background-color:black;
+    color:white;
+    `                           
+
+}
