@@ -74,6 +74,7 @@ let titlesArr = [{
   }
 ];
 
+let newGamePressed = false;
 let titleToGuess = titlesArr[0].title;
 let titleToGuessArr = [];
 let underscoresArr = [];
@@ -99,7 +100,7 @@ function resetGame() {
   //saves the random index o be used later when accessing properties
   index = Math.floor(Math.random() * titlesArr.length);
   titleToGuess = titlesArr[index].title.toLowerCase();
-  console.log(titleToGuess);
+  // console.log(titleToGuess);
   newGame.innerHTML = "new game";
   //resets underscores arr
   underscoresArr = [];
@@ -139,6 +140,7 @@ function resetGame() {
 //________WHEN NEW GAME BUTTON IS PRESSED, GAME RESETS
 newGame.addEventListener('click', function () {
   resetGame();
+  newGamePressed = true;
 });
 
 
@@ -163,7 +165,7 @@ var keynum;
 function addToGuessArr() {
   if (guessesArr.includes(String.fromCharCode(keynum))) {
     console.log("letter has been used already")
-  } else {
+  } else if (newGamePressed) {
     guessesArr.push(String.fromCharCode(keynum));
     //call the compare function on click
     compare();
@@ -175,9 +177,11 @@ function myKeyPress(e) {
     keynum = e.keyCode;
     addToGuessArr();
   } //duplicate code for netscape/firefox/opera
-  else if (e.which) { // Netscape/Firefox/Opera                   
+  else if (e.which) { // Netscape/Firefox/Opera 
+    if(newGamePressed){                  
     keynum = e.which;
     addGuessToArr();
+    }
   }
 }
 
@@ -225,7 +229,7 @@ function compare() {
       counter = 0;
     }
 
-
+//___________________LOOSING SEQUENCE___________________
   //User only gets 8 wrong guesses
   if (wrongGuessesArr.length <= 8) {
     wrongGuesses.innerHTML = ("wrong guesses: " + wrongGuessesArr.join(" , "));
@@ -235,12 +239,15 @@ function compare() {
     document.getElementById("loose").style.display = "block";
     loses = loses + 1;
     document.getElementById("loses").innerHTML = ("Loses: " + loses);
+    document.getElementById("unguessed-title").innerHTML = ("The movie was: " + titleToGuess);
+    document.getElementById("unguessed-title").style.color = "white";
     setTimeout(function () {
       resetGame()
-    }, 2000);
+    }, 2400);
   }
 
 
+  //___________________LOOSING SEQUENCE___________________
 //If user won, and the guess array matches the to guess array
   if (underscoresArr.join("") === titleToGuess) {
 
