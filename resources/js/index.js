@@ -73,7 +73,8 @@ let titlesArr = [{
     quote: 'quote :  "We had a band powerful enough to turn goat piss into gasoline."'
   }
 ];
-
+ 
+let rulesShown = false;
 let newGamePressed = false;
 let titleToGuess = titlesArr[0].title;
 let titleToGuessArr = [];
@@ -278,7 +279,18 @@ function compare() {
   }
 }
 
+//_________________________________rules
 
+document.getElementById("rules").addEventListener('click', function (){
+  if(!rulesShown){
+    document.getElementById("rules-display").style.display = "block";
+    document.getElementById("rules-display").style.position = "fixed";
+    rulesShown = true;
+  } else {
+    document.getElementById("rules-display").style.display = "none";
+    rulesShown = false;
+  }
+});
 
 
 //__________________________END OF COMPARE FUNCTION ________________

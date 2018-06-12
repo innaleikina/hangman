@@ -61,6 +61,52 @@ html {
     justify-content: space-between;
 }
 
+#wins-loses-rules{
+    display:flex;
+    justify-content:space-between;
+}
+
+#rules{
+    width:100px;
+    margin-left:auto;
+    margin-right:28px;
+    margin-top:15px;
+    color:white;
+    border:none;
+    border-bottom:1px white solid;
+    background-color:rgba(0,0,0,0);
+    letter-spacing:1px;
+    box-shadow: 0px 0px 0px 0px white;
+    transition: box-shadow 0.1s linear;
+    padding:1.5px;
+    /* transition:.2s all linear; */
+}
+
+#rules:hover{
+
+    box-shadow: 0px 0px 0px 1px white; 
+}
+
+#rules:active{
+    box-shadow: 0px 0px 0px 3px white;
+}
+
+#rules:focus{
+    outline:0;
+}
+
+#rules-display{
+    width:300px;
+    background-color:rgba(255,255,255,0.8);
+    margin-left:70%;
+    margin-right:30px;
+    padding:10px;
+    margin-top:45px;
+    line-height:1.6rem;
+    display:none;
+    border-radius:10px;
+}
+
 .game-name {
     border-radius: 5px;
     padding: 5px 10px 10px 10px;
@@ -75,6 +121,11 @@ h1 {
     color: white;
     background-color: black;
     /* border:4px rgba(0,0,0,0.5) solid; */
+}
+
+li{
+    margin-bottom:5px;
+    margin-top:5px;
 }
 
 h3 {
@@ -103,7 +154,7 @@ h5 {
     width: 480px;
     margin: 0 auto;
     /* margin-bottom: 100px; */
-    /* margin-top: 40px; */
+    margin-top: 40px;
 }
 
 #newGame {

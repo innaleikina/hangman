@@ -25,10 +25,34 @@
 
 
     <div id="container">
-        <div class="loss-win-container">
-            <div id="wins"></div>
-            <div id="loses"></div>
+
+
+
+        <div id="wins-loses-rules">
+            <div class="loss-win-container">
+                <div id="wins"></div>
+                <div id="loses"></div>
+            </div>
+
+            <button id="rules"> rules </button>
+            <div id="rules-display">
+                <ul>
+                    <li>
+                        Press start game to begin playing
+                    </li>
+                    <li>
+                        Press any key to start guessing letters. If the pressed letter is in the movie name then it will fill in a blank. If the
+                        letter is not in the movie title, then it will be added to wrong guesses section, and the guess counter
+                        will go down by one.
+                    </li>
+                    <li>
+                        You only have 8 wrong guesses, if you run out of guesses you loose!
+                    </li>
+                </ul>
+
+            </div>
         </div>
+
 
         <div id="gameContainer" class="gameContainerStyle">
             <button id="newGame">start game </button>
